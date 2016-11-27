@@ -1,0 +1,124 @@
+# for OpenBSD's fvwm 2.2.5
+
+ModulePath	/usr/X11R6/lib/X11/fvwm
+ImagePath	/usr/X11R6/include/X11/pixmaps:/usr/X11R6/include/X11/bitmaps:/usr/local/share/pixmaps
+
+OpaqueMoveSize	100
+# so videos don't get stopped by movement
+EdgeThickness	0
+# so the mouse doesn't do page scroll by position
+EdgeResistance	0	50
+# a little resistance makes it easier to place windows in the
+# edges of the screen, but still allows moving them off page
+DesktopSize	3x3
+SnapAttraction	25	Windows
+
+Style	*	SloppyFocus, RandomPlacement, SmartPlacement, \
+	NoPPosition, StickyIcon, NakedTransient
+Style xconsole	Sticky
+Style Fvwm*	WindowListSkip, NoTitle, Sticky
+# StaysOnTop, unnecessary with SloppyFocus
+# TODO
+oStyle xclock	NoTitle, Sticky
+
+DefaultFont	6x10
+BorderStyle	--	NoInset HiddenHandles
+HilightColor	ivory	orange
+Style		*	BorderWidth 0, HandleWidth 1, Color wheat/grey30
+MenuStyle	*	FVWM, HilightBack orange, ActiveFore ivory, \
+	Foreground wheat, Background grey30, Greyed grey60
+
+Key	Left	A	SC	Scroll -100 +0
+Key	Right	A	SC	Scroll +100 +0
+Key	Up	A	SC	Scroll +0   -100
+Key	Down	A	SC	Scroll +0   +100
+
+Key	F1	A	M	Menu RootMenu
+Key	F2	A	M	Menu Window-Ops
+Key	F3	A	M	WindowList
+
+Mouse	1	R   	A       Menu RootMenu Nop
+Mouse	2	R    	A      	Menu Window-Ops Nop
+Mouse	3	R    	A      	WindowList
+
+Mouse	1	W	M	Move
+Mouse	2	W	M	Menu Window-Ops Nop
+Mouse	3	W	M	Resize
+
+Mouse	1	FST	A	CRaiseLower-MMove-DMaximize
+Mouse	2	FST	A	Menu Window-Ops Nop
+Mouse	3	FST	A	WindowShade
+
+# don't want icons
+Mouse	0	I	A	Iconify -1
+
+# todo reposition/size every other window
+AddToFunc htile
++ I AnimatedMove 0 0 Warp
++ I Maximize 100 0
+
+# TODO reposition/size every other windows
+AddToFunc vtile
++ I AnimatedMove 0 0 Warp
++ I Maximize 0 100
+
+AddToFunc CRaiseLower-MMove-DMaximize
++ C RaiseLower
++ M Move
++ D Maximize
+
+AddToFunc InitFunction
++ I Exec exec ~/.fehbg
++ I Exec exec ~/backttery.sh
+#+ I Exec while sleep 10; do [[ $(apm -a) = 0 ]] && xbacklight =$(apm -l); done
+
+#AddToFunc RestartFunction
+
+AddToFunc StartFunction
++ I Module FvwmPager 0 0
++ I GotoPage 1 1
++ I Exec exec xrdb -merge ~/.Xdefaults
++ I Exec exec xmodmap ~/.Xmodmap
+
+AddToMenu RootMenu
++ "tmu&x"				Exec exec xterm -u8 -e tmux
++ "tmux &attach"			Exec exec xterm -u8 -e tmux attach -d
++ "&Firefox%mini.netscape.xpm%"		Exec exec firefox
++ "&DeaDBeeF%mini.audiovol.xpm%"	Exec exec deadbeef
++ ""					Nop
++ "Fvwm&Talk%mini.blah.xpm%"		Module FvwmTalk
++ "&Quit Fvwm%mini.exit.xpm%"		Popup QuitMenu
++ ""					Nop
++ "X&Lock%mini.xlock.xpm%"		Exec exec xlock -mode random
+
+AddToMenu QuitMenu
++ "&Restart Fvwm%mini.fvwm.xpm%"	Restart fvwm
++ ""					Nop
++ "Start &xterm%mini.xterm.xpm%"	Restart xterm
++ "Start &twm"				Restart twm
++ "Start &cwm"				Restart cwm
++ ""					Nop
++ "&Quit%mini.bomb.xpm%"		Quit
+
+AddToMenu Window-Ops
++ "&Move%mini.move.xpm%"			Move
++ "&Resize%mini.resize.xpm%"			Resize
++ "Ma&ximize%mini.maximize.xpm%"		Maximize
++ "&Horiz.Tile%mini.maximize-horiz.xpm%"	htile
++ "&Vert.Tile%mini.maximize-vert.xpm%"		vtile
++ "&Stick%mini.stick2.xpm%"			Stick
++ ""						Nop
++ "&Delete%mini.excl.xpm%"			Delete
++ "&Close%mini.cut.xpm%"			Close
++ "Destroy%mini.destroy.xpm%"			Destroy
++ ""						Nop
++ "Re&fresh Window%mini.refresh.xpm%"		RefreshWindow
+
+# keep original OpenBSD Pager Style ?
+*FvwmPagerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPagerBack midnightblue
+*FvwmPagerFore ivory
+*FvwmPagerHilight grey20
+*FvwmPagerGeometry 80x60-0-0
+*FvwmPagerLabel 0 "OpenBSD 6.0"
+*FvwmPagerSmallFont 5x8
