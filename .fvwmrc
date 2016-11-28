@@ -89,7 +89,7 @@ AddToMenu RootMenu
 + "Fvwm&Talk%mini.blah.xpm%"		Module FvwmTalk
 + "&Quit Fvwm%mini.exit.xpm%"		Popup QuitMenu
 + ""					Nop
-+ "X&Lock%mini.xlock.xpm%"		Exec exec xlock -mode random
++ "X&Lock%mini.xlock.xpm%"		Exec exec xlock
 
 AddToMenu QuitMenu
 + "&Restart Fvwm%mini.fvwm.xpm%"	Restart fvwm

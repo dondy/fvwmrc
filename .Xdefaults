@@ -7,6 +7,7 @@ XTerm*scrollBar: false
 XTerm*foreground: wheat
 XTerm*background: grey20
 XTerm*visualBell: true
+XTerm*geometry: 100x30
 ! use Liberation Mono
 XTerm*faceName: Mono
 XTerm*faceSize: 10
