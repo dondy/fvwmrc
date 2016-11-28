@@ -2,17 +2,23 @@
 #
 # sh/ksh initialization
 
-PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games:.
-export PATH HOME TERM
-
-alias ls='ls -F'
-alias la='ls -A'
+alias l='ls -F'
+alias la='l -A'
 alias ll='la -l'
 alias df='df -h'
 alias du='du -h'
 alias mg='mg -n'
 
+PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games:.
+EDITOR=mg
+export PATH HOME TERM EDITOR
+
 export CVSROOT=anoncvs@ftp.hostserver.de:/cvs
+
+dogit() {
+  git commit -a -m "$*"
+  git push
+}
 
 fortune
 [[ -r ~/TODO.txt ]] && cat ~/TODO.txt
