@@ -16,10 +16,6 @@ export PATH HOME TERM EDITOR
 export CVSROOT=anoncvs@ftp.hostserver.de:/cvs
 
 dogit() {
-  #if [[ -n $* ]]
-  #then git commit -am "$*"
-  #else git commit -a
-  #fi &&\
   git commit -a$([[ -n $* ]] && echo m "$*") &&\
   git push
 }
