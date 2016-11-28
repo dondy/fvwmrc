@@ -15,10 +15,7 @@ export PATH HOME TERM EDITOR
 
 export CVSROOT=anoncvs@ftp.hostserver.de:/cvs
 
-dogit() {
-  git commit -am "$(echo $*)" &&\
-  git push
-}
+dogit() { git commit -a$([[ -n $* ]] && print -n 'm "$*"') && git push; }
 
 fortune
 [[ -r ~/TODO.txt ]] && cat ~/TODO.txt
