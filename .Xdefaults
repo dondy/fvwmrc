@@ -3,6 +3,7 @@ XTerm*loginShell:true
 
 XTerm*eightBitInput: false
 XTerm*locale: true
+XTerm*utf8: true
 XTerm*scrollBar: false
 XTerm*foreground: wheat
 XTerm*background: grey20
@@ -11,11 +12,4 @@ XTerm*geometry: 100x30
 ! use Liberation Mono
 XTerm*faceName: Mono
 XTerm*faceSize: 10
-
-!#include "/usr/X11R6/share/X11/app-defaults/XClock-color"
-!#include "/usr/X11R6/share/X11/app-defaults/XLoad"
-!#include "/usr/X11R6/share/X11/app-defaults/XConsole"
-!#include "/usr/X11R6/share/X11/app-defaults/Editres"
-!#include "/usr/X11R6/share/X11/app-defaults/Xedit-color"
-!#include "/usr/X11R6/share/X11/app-defaults/XFontSel"
 

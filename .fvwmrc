@@ -10,7 +10,7 @@ EdgeThickness	0
 EdgeResistance	0	50
 # a little resistance makes it easier to place windows in the
 # edges of the screen, but still allows moving them off page
-DesktopSize	2x2
+DesktopSize	3x3
 SnapAttraction	25	Windows
 
 Style	*	SloppyFocus, RandomPlacement, SmartPlacement, \
@@ -21,12 +21,13 @@ Style Fvwm*	WindowListSkip, NoTitle, Sticky
 # TODO
 Style xclock	NoTitle, Sticky
 
-DefaultFont	6x10
+DefaultFont	-adobe-helvetica-medium-r-normal--10-*-*-*-*-*-*-*
 BorderStyle	--	NoInset HiddenHandles
 HilightColor	ivory	orange
 Style		*	BorderWidth 0, HandleWidth 1, Color wheat/grey30
 MenuStyle	*	FVWM, HilightBack orange, ActiveFore ivory, \
-	Foreground wheat, Background grey30, Greyed grey60
+	Foreground wheat, Background grey30, Greyed grey60, \
+	Font -adobe-helvetica-medium-r-normal--12-*-*-*-*-*-*-*
 
 # use wrap around even if it's stupid...
 Key	Left	A	SC	Scroll -100000	+0
@@ -83,8 +84,8 @@ AddToFunc StartFunction
 + I Module FvwmButtons
 
 AddToMenu RootMenu
-+ "tmu&x"				Exec exec xterm -u8 -e tmux
-+ "tmux &attach"			Exec exec xterm -u8 -e tmux attach -d
++ "tmu&x"				Exec exec xterm -e tmux
++ "tmux &attach"			Exec exec xterm -e tmux attach -d
 + "&Firefox%mini.netscape.xpm%"		Exec exec firefox
 + "&DeaDBeeF%mini.audiovol.xpm%"	Exec exec deadbeef
 + ""					Nop
@@ -127,7 +128,7 @@ AddToMenu Window-Ops
 
 *FvwmButtonsBoxSize smart
 *FvwmButtonsColumns 1
-*FvwmButtonsGeometry 133x297-0-0
+*FvwmButtonsGeometry 133x295-0-0
 *FvwmButtonsRows 3
 *FvwmButtons(Swallow xclock 'Exec xclock -render -chime &')
 *FvwmButtons(Swallow xload 'Exec xload -hl red &', \
