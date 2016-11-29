@@ -10,7 +10,7 @@ EdgeThickness	0
 EdgeResistance	0	50
 # a little resistance makes it easier to place windows in the
 # edges of the screen, but still allows moving them off page
-DesktopSize	3x3
+DesktopSize	2x2
 SnapAttraction	25	Windows
 
 Style	*	SloppyFocus, RandomPlacement, SmartPlacement, \
@@ -28,10 +28,11 @@ Style		*	BorderWidth 0, HandleWidth 1, Color wheat/grey30
 MenuStyle	*	FVWM, HilightBack orange, ActiveFore ivory, \
 	Foreground wheat, Background grey30, Greyed grey60
 
-Key	Left	A	SC	Scroll -100 +0
-Key	Right	A	SC	Scroll +100 +0
-Key	Up	A	SC	Scroll +0   -100
-Key	Down	A	SC	Scroll +0   +100
+# use wrap around even if it's stupid...
+Key	Left	A	SC	Scroll -100000	+0
+Key	Right	A	SC	Scroll +100000	+0
+Key	Up	A	SC	Scroll +0	-100000
+Key	Down	A	SC	Scroll +0	+100000
 
 Key	F1	A	M	Menu RootMenu
 Key	F2	A	M	Menu Window-Ops
@@ -54,11 +55,13 @@ Mouse	0	I	A	Iconify -1
 
 # todo reposition/size every other window
 AddToFunc htile
++ I Raise
 + I AnimatedMove 0 0 Warp
 + I Maximize 100 0
 
 # TODO reposition/size every other windows
 AddToFunc vtile
++ I Raise
 + I AnimatedMove 0 0 Warp
 + I Maximize 0 100
 
@@ -77,9 +80,7 @@ AddToFunc InitFunction
 AddToFunc StartFunction
 + I Exec exec xrdb -merge ~/.Xdefaults
 + I Exec exec xmodmap ~/.Xmodmap
-+ I GotoPage 1 1
 + I Module FvwmButtons
-#+ I Module FvwmPager 0 0
 
 AddToMenu RootMenu
 + "tmu&x"				Exec exec xterm -u8 -e tmux
@@ -128,7 +129,7 @@ AddToMenu Window-Ops
 *FvwmButtonsColumns 1
 *FvwmButtonsGeometry 133x297-0-0
 *FvwmButtonsRows 3
-*FvwmButtons(Swallow XClock 'Exec xclock -render -chime &')
-*FvwmButtons(Swallow XLoad 'Exec xload -hl red -nolabel &')
+*FvwmButtons(Swallow xclock 'Exec xclock -render -chime &')
+*FvwmButtons(Swallow xload 'Exec xload -hl red &', \
+	Action 'Exec xterm -e top')
 *FvwmButtons(Swallow "FvwmPager" "FvwmPager 0 0")
-#*FvwmButtons(Swallow (UseOld) "XConsole" Nop)
