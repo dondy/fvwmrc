@@ -19,7 +19,7 @@ Style xconsole	Sticky
 Style Fvwm*	WindowListSkip, NoTitle, Sticky
 # StaysOnTop, unnecessary with SloppyFocus
 # TODO
-oStyle xclock	NoTitle, Sticky
+Style xclock	NoTitle, Sticky
 
 DefaultFont	6x10
 BorderStyle	--	NoInset HiddenHandles
@@ -75,10 +75,11 @@ AddToFunc InitFunction
 #AddToFunc RestartFunction
 
 AddToFunc StartFunction
-+ I Module FvwmPager 0 0
-+ I GotoPage 1 1
 + I Exec exec xrdb -merge ~/.Xdefaults
 + I Exec exec xmodmap ~/.Xmodmap
++ I GotoPage 1 1
++ I Module FvwmButtons
+#+ I Module FvwmPager 0 0
 
 AddToMenu RootMenu
 + "tmu&x"				Exec exec xterm -u8 -e tmux
@@ -122,3 +123,12 @@ AddToMenu Window-Ops
 *FvwmPagerGeometry 80x60-0-0
 *FvwmPagerLabel 0 "OpenBSD 6.0"
 *FvwmPagerSmallFont 5x8
+
+*FvwmButtonsBoxSize smart
+*FvwmButtonsColumns 1
+*FvwmButtonsGeometry 133x297-0-0
+*FvwmButtonsRows 3
+*FvwmButtons(Swallow XClock 'Exec xclock -render -chime &')
+*FvwmButtons(Swallow XLoad 'Exec xload -hl red -nolabel &')
+*FvwmButtons(Swallow "FvwmPager" "FvwmPager 0 0")
+#*FvwmButtons(Swallow (UseOld) "XConsole" Nop)

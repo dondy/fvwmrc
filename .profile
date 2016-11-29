@@ -2,11 +2,11 @@
 #
 # sh/ksh initialization
 
-alias l='ls -F'
+alias l='/bin/ls -F'
 alias la='l -A'
 alias ll='la -l'
-alias df='df -h'
-alias du='du -h'
+alias df='/bin/df -h'
+alias du='/usr/bin/du -h'
 alias mg='/usr/bin/mg -n'
 
 PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games:.
