@@ -19,7 +19,6 @@ Style xconsole	Sticky
 Style Fvwm*	WindowListSkip, NoTitle, Sticky
 # StaysOnTop, unnecessary with SloppyFocus
 # TODO
-Style xclock	NoTitle, Sticky
 
 DefaultFont	-adobe-helvetica-medium-r-normal--10-*-*-*-*-*-*-*
 BorderStyle	--	NoInset HiddenHandles
@@ -92,7 +91,7 @@ AddToMenu RootMenu
 + "Fvwm&Talk%mini.blah.xpm%"		Module FvwmTalk
 + "&Quit Fvwm%mini.exit.xpm%"		Popup QuitMenu
 + ""					Nop
-+ "X&Lock%mini.xlock.xpm%"		Exec exec xlock
++ "X&Lock%mini.xlock.xpm%"		Exec exec xlock -mode random
 
 AddToMenu QuitMenu
 + "&Restart Fvwm%mini.fvwm.xpm%"	Restart fvwm
@@ -130,7 +129,7 @@ AddToMenu Window-Ops
 *FvwmButtonsColumns 1
 *FvwmButtonsGeometry 133x295-0-0
 *FvwmButtonsRows 3
-*FvwmButtons(Swallow xclock 'Exec xclock -render -chime &')
+*FvwmButtons(Swallow xclock 'Exec xclock -render &')
 *FvwmButtons(Swallow xload 'Exec xload -hl red &', \
 	Action 'Exec xterm -e top')
 *FvwmButtons(Swallow "FvwmPager" "FvwmPager 0 0")
