@@ -13,18 +13,19 @@ EdgeResistance	0	50
 DesktopSize	3x3
 SnapAttraction	25	Windows
 
-Style	*	SloppyFocus, RandomPlacement, SmartPlacement, \
-	NoPPosition, StickyIcon, NakedTransient
-Style xconsole	Sticky
-Style Fvwm*	WindowListSkip, NoTitle, Sticky
+Style	*		SloppyFocus, RandomPlacement, SmartPlacement, \
+			NoPPosition, StickyIcon, NakedTransient
+Style xconsole		Sticky
+Style stalonetray	WindowListSkip, NoTitle, Sticky
+Style Fvwm*		WindowListSkip, NoTitle, Sticky
 
 DefaultFont	-adobe-helvetica-medium-r-normal--10-*-*-*-*-*-*-*
 BorderStyle	--	NoInset HiddenHandles
 HilightColor	ivory	orange
 Style		*	BorderWidth 0, HandleWidth 1, Color wheat/grey30
 MenuStyle	*	FVWM, HilightBack orange, ActiveFore ivory, \
-	Foreground wheat, Background grey30, Greyed grey60, \
-	Font -adobe-helvetica-medium-r-normal--12-*-*-*-*-*-*-*
+			Foreground wheat, Background grey30, Greyed grey60, \
+			Font -adobe-helvetica-medium-r-normal--12-*-*-*-*-*-*-*
 
 # use wrap around even if it's stupid...
 Key	Left	A	SC	Scroll -100000	+0
@@ -68,7 +69,8 @@ AddToFunc CRaiseLower-MMove-DMaximize
 
 AddToFunc InitFunction
 + I Exec exec ~/.fehbg
-+ I Exec "while sleep 10; do [[ $(apm -a) = 0 ]] && xbacklight =$(apm -l); done"
++ I Exec exec stalonetray
++ I Exec while sleep 10; do [[ $(apm -a) = 0 ]] && xbacklight =$(apm -l); done
 
 #AddToFunc RestartFunction
 
@@ -119,12 +121,12 @@ AddToMenu Window-Ops
 *FvwmPagerLabel 0 "OpenBSD 6.0"
 *FvwmPagerSmallFont 5x8
 
-*FvwmButtonsBoxSize fixed
-*FvwmButtonsGeometry 140x300-0-0
-*FvwmButtonsColumns 5
-*FvwmButtonsRows 10
-*FvwmButtons(5x3, Swallow xclock 'Exec xclock -chime &')
-*FvwmButtons(5x3, Swallow xload 'Exec xload -hl red &', \
-	Action 'Exec xterm -e top')
-*FvwmButtons(5x3, Swallow FvwmPager 'FvwmPager 0 0')
-*FvwmButtons(5x1, Swallow stalonetray 'Exec stalonetray &')
+*FvwmButtonsPadding 0 0
+*FvwmButtonsGeometry 135x296-0-0
+*FvwmButtonsColumns 1
+*FvwmButtonsRows 3
+*FvwmButtonsBoxSize smart
+*FvwmButtons(3x1, Swallow xclock 'Exec exec xclock -chime')
+*FvwmButtons(3x1, Swallow xload 'Exec exec xload -hl red', \
+	Action 'Exec exec xterm -e top')
+*FvwmButtons(3x1, Swallow FvwmPager 'FvwmPager 0 0')
