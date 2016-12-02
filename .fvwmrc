@@ -126,7 +126,7 @@ AddToMenu Window-Ops
 *FvwmButtonsColumns 1
 *FvwmButtonsRows 3
 *FvwmButtonsBoxSize smart
-*FvwmButtons(3x1, Swallow xclock 'Exec exec xclock -chime')
+*FvwmButtons(3x1, Swallow xclock 'Exec exec xclock')
 *FvwmButtons(3x1, Swallow xload 'Exec exec xload -hl red', \
 	Action 'Exec exec xterm -e top')
 *FvwmButtons(3x1, Swallow FvwmPager 'FvwmPager 0 0')

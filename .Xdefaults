@@ -1,12 +1,15 @@
 ! $OpenBSD: dot.Xdefaults,v 1.3 2014/07/10 10:22:59 jasper Exp $
 XTerm*loginShell:true
 
+
+*customization: -color
+
 XTerm*eightBitInput: false
 XTerm*locale: true
 XTerm*utf8: true
 XTerm*scrollBar: false
-XTerm*foreground: wheat
-XTerm*background: grey20
+!XTerm*foreground: wheat
+XTerm*background: wheat
 XTerm*visualBell: true
 XTerm*geometry: 100x30
 ! use Liberation Mono
@@ -14,3 +17,4 @@ XTerm*faceName: Mono
 XTerm*faceSize: 10
 
 XClock*render: true
+XClock*chime: true
