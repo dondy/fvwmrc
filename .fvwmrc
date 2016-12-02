@@ -17,8 +17,6 @@ Style	*	SloppyFocus, RandomPlacement, SmartPlacement, \
 	NoPPosition, StickyIcon, NakedTransient
 Style xconsole	Sticky
 Style Fvwm*	WindowListSkip, NoTitle, Sticky
-# StaysOnTop, unnecessary with SloppyFocus
-# TODO
 
 DefaultFont	-adobe-helvetica-medium-r-normal--10-*-*-*-*-*-*-*
 BorderStyle	--	NoInset HiddenHandles
@@ -53,13 +51,11 @@ Mouse	3	FST	A	WindowShade
 # don't want icons
 Mouse	0	I	A	Iconify -1
 
-# todo reposition/size every other window
+# TODO reposition/size every other window
 AddToFunc htile
 + I Raise
 + I AnimatedMove 0 0 Warp
 + I Maximize 100 0
-
-# TODO reposition/size every other windows
 AddToFunc vtile
 + I Raise
 + I AnimatedMove 0 0 Warp
@@ -72,8 +68,7 @@ AddToFunc CRaiseLower-MMove-DMaximize
 
 AddToFunc InitFunction
 + I Exec exec ~/.fehbg
-+ I Exec exec ~/backttery.sh
-#+ I Exec while sleep 10; do [[ $(apm -a) = 0 ]] && xbacklight =$(apm -l); done
++ I Exec "while sleep 10; do [[ $(apm -a) = 0 ]] && xbacklight =$(apm -l); done"
 
 #AddToFunc RestartFunction
 
@@ -116,20 +111,20 @@ AddToMenu Window-Ops
 + ""						Nop
 + "Re&fresh Window%mini.refresh.xpm%"		RefreshWindow
 
-# keep original OpenBSD Pager Style ?
+# keep original OpenBSD Pager Style
 *FvwmPagerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPagerBack midnightblue
 *FvwmPagerFore ivory
 *FvwmPagerHilight grey20
-*FvwmPagerGeometry 80x60-0-0
 *FvwmPagerLabel 0 "OpenBSD 6.0"
 *FvwmPagerSmallFont 5x8
 
-*FvwmButtonsBoxSize smart
-*FvwmButtonsColumns 1
-*FvwmButtonsGeometry 133x295-0-0
-*FvwmButtonsRows 3
-*FvwmButtons(Swallow xclock 'Exec xclock -render &')
-*FvwmButtons(Swallow xload 'Exec xload -hl red &', \
+*FvwmButtonsBoxSize fixed
+*FvwmButtonsGeometry 140x300-0-0
+*FvwmButtonsColumns 5
+*FvwmButtonsRows 10
+*FvwmButtons(5x3, Swallow xclock 'Exec xclock -chime &')
+*FvwmButtons(5x3, Swallow xload 'Exec xload -hl red &', \
 	Action 'Exec xterm -e top')
-*FvwmButtons(Swallow "FvwmPager" "FvwmPager 0 0")
+*FvwmButtons(5x3, Swallow FvwmPager 'FvwmPager 0 0')
+*FvwmButtons(5x1, Swallow stalonetray 'Exec stalonetray &')

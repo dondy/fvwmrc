@@ -13,3 +13,4 @@ XTerm*geometry: 100x30
 XTerm*faceName: Mono
 XTerm*faceSize: 10
 
+XClock*render: true
