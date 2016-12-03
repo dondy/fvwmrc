@@ -54,13 +54,7 @@ Mouse	0	I	A	Iconify -1
 
 # TODO reposition/size every other window
 AddToFunc htile
-+ I Raise
-+ I AnimatedMove 0 0 Warp
-+ I Maximize 100 0
 AddToFunc vtile
-+ I Raise
-+ I AnimatedMove 0 0 Warp
-+ I Maximize 0 100
 
 AddToFunc CRaiseLower-MMove-DMaximize
 + C RaiseLower
