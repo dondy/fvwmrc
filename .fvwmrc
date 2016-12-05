@@ -13,16 +13,19 @@ EdgeResistance	0	50
 DesktopSize	3x3
 SnapAttraction	25	Windows
 
+DefaultFont	-adobe-helvetica-medium-r-normal--10-*-*-*-*-*-*-*
+
+BorderStyle	--	NoInset HiddenHandles
+
+HilightColor	ivory	orange
+
 Style	*		SloppyFocus, RandomPlacement, SmartPlacement, \
-			NoPPosition, StickyIcon, NakedTransient
+			NoPPosition, StickyIcon, NakedTransient, \
+			BorderWidth 0, HandleWidth 1, Color wheat/grey30
 Style xconsole		Sticky
 Style stalonetray	WindowListSkip, NoTitle, Sticky
 Style Fvwm*		WindowListSkip, NoTitle, Sticky
 
-DefaultFont	-adobe-helvetica-medium-r-normal--10-*-*-*-*-*-*-*
-BorderStyle	--	NoInset HiddenHandles
-HilightColor	ivory	orange
-Style		*	BorderWidth 0, HandleWidth 1, Color wheat/grey30
 MenuStyle	*	FVWM, HilightBack orange, ActiveFore ivory, \
 			Foreground wheat, Background grey30, Greyed grey60, \
 			Font -adobe-helvetica-medium-r-normal--12-*-*-*-*-*-*-*
@@ -52,10 +55,6 @@ Mouse	3	FST	A	WindowShade
 # don't want icons
 Mouse	0	I	A	Iconify -1
 
-# TODO reposition/size every other window
-AddToFunc htile
-AddToFunc vtile
-
 AddToFunc CRaiseLower-MMove-DMaximize
 + C RaiseLower
 + M Move
@@ -65,6 +64,7 @@ AddToFunc InitFunction
 + I Exec exec ~/.fehbg
 + I Exec exec stalonetray
 + I Exec while sleep 10; do [[ $(apm -a) = 0 ]] && xbacklight =$(apm -l); done
++ I Module FvwmBanner
 
 #AddToFunc RestartFunction
 
@@ -74,15 +74,23 @@ AddToFunc StartFunction
 + I Module FvwmButtons
 
 AddToMenu RootMenu
-+ "tmu&x"				Exec exec xterm -e tmux
-+ "tmux &attach"			Exec exec xterm -e tmux attach -d
++ "tmu&x%jterm.xpm%"			Exec exec xterm -e tmux
++ "tmux &attach%jwindow.xpm"		Exec exec xterm -e tmux attach -d
 + "&Firefox%mini.netscape.xpm%"		Exec exec firefox
 + "&DeaDBeeF%mini.audiovol.xpm%"	Exec exec deadbeef
++ "&Games"				Popup GamesMenu
 + ""					Nop
 + "Fvwm&Talk%mini.blah.xpm%"		Module FvwmTalk
 + "&Quit Fvwm%mini.exit.xpm%"		Popup QuitMenu
 + ""					Nop
 + "X&Lock%mini.xlock.xpm%"		Exec exec xlock -mode random
+
+AddToMenu GamesMenu
++ "&Dune Legacy"		Exec exec dunelegacy
++ "PrBoom+/Freedoom: Phase &1"	Exec exec prboom-plus -iwad ~/.prboom-plus/freedoom1.wad
++ "PrBoom+/Freedoom: Phase &2"	Exec exec prboom-plus -iwad ~/.prboom-plus/freedoom2.wad
++ "PrBoom+/&FreeDM"		Exec exec prboom-plus -iwad ~/.prboom-plus/freedm.wad
++ "&OpenTTD"			Exec exec openttd
 
 AddToMenu QuitMenu
 + "&Restart Fvwm%mini.fvwm.xpm%"	Restart fvwm
@@ -91,14 +99,14 @@ AddToMenu QuitMenu
 + "Start &twm"				Restart twm
 + "Start &cwm"				Restart cwm
 + ""					Nop
-+ "&Quit%mini.bomb.xpm%"		Quit
++ "&Quit%mini.exit.xpm%"		Quit
 
 AddToMenu Window-Ops
 + "&Move%mini.move.xpm%"			Move
 + "&Resize%mini.resize.xpm%"			Resize
 + "Ma&ximize%mini.maximize.xpm%"		Maximize
-+ "&Horiz.Tile%mini.maximize-horiz.xpm%"	htile
-+ "&Vert.Tile%mini.maximize-vert.xpm%"		vtile
++ "&Horiz.Tile%mini.maximize-horiz.xpm%"	Maximize 0 100
++ "&Vert.Tile%mini.maximize-vert.xpm%"		Maximize 100 0
 + "&Stick%mini.stick2.xpm%"			Stick
 + ""						Nop
 + "&Delete%mini.excl.xpm%"			Delete
@@ -112,15 +120,15 @@ AddToMenu Window-Ops
 *FvwmPagerBack midnightblue
 *FvwmPagerFore ivory
 *FvwmPagerHilight grey20
-*FvwmPagerLabel 0 "OpenBSD 6.0"
+PipeRead `echo *FvwmPagerLabel 0 \\"$(hostname -s): $(uname -sr)\\"`
 *FvwmPagerSmallFont 5x8
 
 *FvwmButtonsPadding 0 0
 *FvwmButtonsGeometry 135x296-0-0
 *FvwmButtonsColumns 1
-*FvwmButtonsRows 3
+*FvwmButtonsRows 5
 *FvwmButtonsBoxSize smart
-*FvwmButtons(3x1, Swallow xclock 'Exec exec xclock')
-*FvwmButtons(3x1, Swallow xload 'Exec exec xload -hl red', \
+*FvwmButtons(1x2, Swallow xclock 'Exec exec xclock')
+*FvwmButtons(1x1, Swallow xload 'Exec exec xload -nolabel -hl red', \
 	Action 'Exec exec xterm -e top')
-*FvwmButtons(3x1, Swallow FvwmPager 'FvwmPager 0 0')
+*FvwmButtons(1x2, Swallow FvwmPager 'FvwmPager 0 0')
