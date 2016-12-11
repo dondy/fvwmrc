@@ -78,6 +78,7 @@ AddToMenu RootMenu
 + "tmux &attach%jwindow.xpm"		Exec exec xterm -e tmux attach -d
 + "&Firefox%mini.netscape.xpm%"		Exec exec firefox
 + "&DeaDBeeF%mini.audiovol.xpm%"	Exec exec deadbeef
++ "GNU &Emacs"				Exec exec emacs
 + "&Games"				Popup GamesMenu
 + ""					Nop
 + "Fvwm&Talk%mini.blah.xpm%"		Module FvwmTalk
@@ -87,10 +88,12 @@ AddToMenu RootMenu
 
 AddToMenu GamesMenu
 + "&Dune Legacy"		Exec exec dunelegacy
-+ "PrBoom+/Freedoom: Phase &1"	Exec exec prboom-plus -iwad ~/.prboom-plus/freedoom1.wad
-+ "PrBoom+/Freedoom: Phase &2"	Exec exec prboom-plus -iwad ~/.prboom-plus/freedoom2.wad
-+ "PrBoom+/&FreeDM"		Exec exec prboom-plus -iwad ~/.prboom-plus/freedm.wad
-+ "&OpenTTD"			Exec exec openttd
++ "PrBoom+/Freedoom: Phase &1"	Exec exec prboom-plus \
+  -iwad ~/.prboom-plus/freedoom1.wad
++ "PrBoom+/Freedoom: Phase &2"	Exec exec prboom-plus \
+  -iwad ~/.prboom-plus/freedoom2.wad
++ "PrBoom+/&FreeDM"		Exec exec prboom-plus \
+  -iwad ~/.prboom-plus/freedm.wad
 
 AddToMenu QuitMenu
 + "&Restart Fvwm%mini.fvwm.xpm%"	Restart fvwm
@@ -130,5 +133,5 @@ PipeRead `echo *FvwmPagerLabel 0 \\"$(hostname -s): $(uname -sr)\\"`
 *FvwmButtonsBoxSize smart
 *FvwmButtons(1x2, Swallow xclock 'Exec exec xclock')
 *FvwmButtons(1x1, Swallow xload 'Exec exec xload -nolabel -hl red', \
-	Action 'Exec exec xterm -e top')
+	Action 'Exec exec xterm -fg lime -bg black -geometry 80x30 -e top')
 *FvwmButtons(1x2, Swallow FvwmPager 'FvwmPager 0 0')
