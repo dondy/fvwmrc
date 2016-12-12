@@ -108,8 +108,8 @@ AddToMenu Window-Ops
 + "&Move%mini.move.xpm%"			Move
 + "&Resize%mini.resize.xpm%"			Resize
 + "Ma&ximize%mini.maximize.xpm%"		Maximize
-+ "&Horiz.Tile%mini.maximize-horiz.xpm%"	Maximize 0 100
-+ "&Vert.Tile%mini.maximize-vert.xpm%"		Maximize 100 0
++ "&Horiz.Tile%mini.maximize-horiz.xpm%"	Maximize 100 0
++ "&Vert.Tile%mini.maximize-vert.xpm%"		Maximize 0 100
 + "&Stick%mini.stick2.xpm%"			Stick
 + ""						Nop
 + "&Delete%mini.excl.xpm%"			Delete
