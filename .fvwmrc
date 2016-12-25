@@ -10,7 +10,7 @@ EdgeThickness	0
 EdgeResistance	0	50
 # a little resistance makes it easier to place windows in the
 # edges of the screen, but still allows moving them off page
-DesktopSize	3x3
+DesktopSize	3x2
 SnapAttraction	25	Windows
 
 DefaultFont	-adobe-helvetica-medium-r-normal--10-*-*-*-*-*-*-*
@@ -61,10 +61,11 @@ AddToFunc CRaiseLower-MMove-DMaximize
 + D Maximize
 
 AddToFunc InitFunction
++ I Module FvwmBanner
 + I Exec exec ~/.fehbg
 + I Exec exec stalonetray
 + I Exec while sleep 10; do [[ $(apm -a) = 0 ]] && xbacklight =$(apm -l); done
-+ I Module FvwmBanner
+# adjust the brightness according to the battery status
 
 #AddToFunc RestartFunction
 
@@ -119,19 +120,41 @@ AddToMenu Window-Ops
 + "Re&fresh Window%mini.refresh.xpm%"		RefreshWindow
 
 # keep original OpenBSD Pager Style
+PipeRead `echo *FvwmPagerLabel 0 \\"$(hostname -s): $(uname -sr)\\"`
 *FvwmPagerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPagerSmallFont 5x8
 *FvwmPagerBack midnightblue
 *FvwmPagerFore ivory
 *FvwmPagerHilight grey20
-PipeRead `echo *FvwmPagerLabel 0 \\"$(hostname -s): $(uname -sr)\\"`
-*FvwmPagerSmallFont 5x8
 
 *FvwmButtonsPadding 0 0
-*FvwmButtonsGeometry 135x296-0-0
+*FvwmButtonsGeometry 128x256-0-0
 *FvwmButtonsColumns 1
-*FvwmButtonsRows 5
+*FvwmButtonsRows 4
 *FvwmButtonsBoxSize smart
 *FvwmButtons(1x2, Swallow xclock 'Exec exec xclock')
 *FvwmButtons(1x1, Swallow xload 'Exec exec xload -nolabel -hl red', \
 	Action 'Exec exec xterm -fg lime -bg black -geometry 80x30 -e top')
-*FvwmButtons(1x2, Swallow FvwmPager 'FvwmPager 0 0')
+*FvwmButtons(1x1, Swallow FvwmPager 'FvwmPager 0 0')
+
+### DeaDBeeF Menu
+Key F4 A M Menu DeaDBeeF
+
+AddToFunc ExecDeaDBeeF
++ I Exec exec deadbeef --$0
++ I Menu DeaDBeeF
+
+AddToFunc Execmixerctl
++ I Exec exec mixerctl -q outputs.master=$0
++ I Menu DeaDBeeF
+
+AddToMenu DeaDBeeF
++ "DeaDBeeF"	Title
++ "&play-pause"	ExecDeaDBeeF play-pause
++ "&next"	ExecDeaDBeeF next
++ "pre&v"	ExecDeaDBeeF prev
++ "&random"	ExecDeaDBeeF random
++ "volume&+70"	Execmixerctl +70
++ "volume&-30"	Execmixerctl -30
++ "&stop"	ExecDeaDBeeF stop
++ "&quit"	ExecDeaDBeeF quit

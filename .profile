@@ -12,8 +12,11 @@ alias l='/bin/ls -F'
 alias la='l -A'
 alias ll='la -l'
 alias df='/bin/df -h'
+
 alias du='/usr/bin/du -h'
 alias mg='/usr/bin/mg -n'
+
+alias enw='/usr/local/bin/emacs -nw'
 alias veronica='/usr/local/bin/lynx gopher://gopher.floodgap.com/1/v2'
 
 dogit() { git commit -a && git push; }
