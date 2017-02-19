@@ -70,9 +70,9 @@ AddToFunc InitFunction
 #AddToFunc RestartFunction
 
 AddToFunc StartFunction
++ I Module FvwmButtons
 + I Exec exec xrdb -merge ~/.Xdefaults
 + I Exec exec xmodmap ~/.Xmodmap
-+ I Module FvwmButtons
 
 AddToMenu RootMenu
 + "tmu&x%jterm.xpm%"			Exec exec xterm -e tmux
@@ -80,6 +80,7 @@ AddToMenu RootMenu
 + "&Firefox%mini.netscape.xpm%"		Exec exec firefox
 + "&DeaDBeeF%mini.audiovol.xpm%"	Exec exec deadbeef
 + "GNU &Emacs"				Exec exec emacs
++ "GNU &Octave"				Exec exec octave
 + "&Games"				Popup GamesMenu
 + ""					Nop
 + "Fvwm&Talk%mini.blah.xpm%"		Module FvwmTalk
@@ -95,6 +96,7 @@ AddToMenu GamesMenu
   -iwad ~/.prboom-plus/freedoom2.wad
 + "PrBoom+/&FreeDM"		Exec exec prboom-plus \
   -iwad ~/.prboom-plus/freedm.wad
++ "ToME4"			Exec exec tome4
 
 AddToMenu QuitMenu
 + "&Restart Fvwm%mini.fvwm.xpm%"	Restart fvwm
@@ -129,32 +131,13 @@ PipeRead `echo *FvwmPagerLabel 0 \\"$(hostname -s): $(uname -sr)\\"`
 
 *FvwmButtonsPadding 0 0
 *FvwmButtonsGeometry 128x256-0-0
+*FvwmButtonsBoxSize smart
 *FvwmButtonsColumns 1
 *FvwmButtonsRows 4
-*FvwmButtonsBoxSize smart
 *FvwmButtons(1x2, Swallow xclock 'Exec exec xclock')
 *FvwmButtons(1x1, Swallow xload 'Exec exec xload -nolabel -hl red', \
 	Action 'Exec exec xterm -fg lime -bg black -geometry 80x30 -e top')
 *FvwmButtons(1x1, Swallow FvwmPager 'FvwmPager 0 0')
 
-### DeaDBeeF Menu
-Key F4 A M Menu DeaDBeeF
-
-AddToFunc ExecDeaDBeeF
-+ I Exec exec deadbeef --$0
-+ I Menu DeaDBeeF
-
-AddToFunc Execmixerctl
-+ I Exec exec mixerctl -q outputs.master=$0
-+ I Menu DeaDBeeF
-
-AddToMenu DeaDBeeF
-+ "DeaDBeeF"	Title
-+ "&play-pause"	ExecDeaDBeeF play-pause
-+ "&next"	ExecDeaDBeeF next
-+ "pre&v"	ExecDeaDBeeF prev
-+ "&random"	ExecDeaDBeeF random
-+ "volume&+70"	Execmixerctl +70
-+ "volume&-30"	Execmixerctl -30
-+ "&stop"	ExecDeaDBeeF stop
-+ "&quit"	ExecDeaDBeeF quit
+# read the menu and funcs to control deadbeef and mixerctl
+#Read devel/deadbeef.fvwm

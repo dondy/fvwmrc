@@ -9,8 +9,8 @@ XTerm*utf8: true
 XTerm*scrollBar: false
 XTerm*foreground: grey20
 XTerm*background: wheat
-XTerm*visualBell: true
-XTerm*geometry: 100x30
+! XTerm*visualBell: true
+! XTerm*geometry: 100x30
 ! use Liberation Mono
 XTerm*faceName: Mono
 XTerm*faceSize: 10
